@@ -1,0 +1,1 @@
+celery -A FinalProject worker  -l INFO -B

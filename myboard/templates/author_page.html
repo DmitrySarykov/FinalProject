@@ -1,0 +1,52 @@
+{% extends 'index.html' %}
+
+{% block title %}
+<h1>Моя страница</h1> 
+{% endblock title %}
+
+{% block content %}
+    <a class="btn btn-primary text-uppercase" href="{% url 'post_list' %}">Назад</a> 
+    <hr>
+    <form method="GET">
+        Объявление:
+        {{filter.form.post}}
+        <input type="submit" value="Найти">
+    </form>
+    Отклики:
+    {% if filter.qs %}
+    {% for response in filter.qs %}
+        <h3>{{response.date}} от {{response.author}} на {{response.post}}</h3>
+        <p>{{response.text}}</p>
+        <p>{% if response.status == False %}Не принят{% else %}Принят{% endif %}</p>
+        <p>
+            <a href="{% url 'response_delete' response.pk %}">Удалить</a>
+            <a href="{% url 'response_status' response.pk %}">
+            {% if response.status == False %}Принять{% else %}Отклонить{% endif %}
+            </a>
+        </p>
+    {% endfor %}
+    {% else %}
+    <p>Нет откликов</p>
+    {% endif %}
+    {% if is_paginated %}
+    
+    {% if page_obj.has_previous %}
+        <a href="?page=1">Первая</a>
+        <a href="?page={{ page_obj.previous_page_number }}"><<<</a>
+    {% endif %}
+
+    {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+            <a>{{ num }}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+            <a href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">>>></a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">Последняя</a>
+    {% endif %}
+
+    {% endif %}
+{% endblock content %}

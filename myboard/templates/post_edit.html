@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+
+{% block title %}
+<h1>Создание объявления</h1>
+{% endblock title %}
+ 
+{% block content %}
+    <form method="POST">
+        {{ form.media }}
+        {% csrf_token %}
+        <p><label>Дата:{{form.date}}</label></p>
+        <p><label>Автор:{{form.author}}</label></p>
+        <p><label>Название:{{form.title}}</label></p>
+        <p><label>Текст:{{form.text}}</label></p>
+        <p><label>Категория:{{form.category}}</label></p>
+        <br>
+        {% if request.path == '/post/add/'%}
+        <div class="d-flex justify-content-center mb-4"><input class="btn btn-primary text-uppercase" type="submit" value="Добавить"></div>
+        {% else %}
+        <div class="d-flex justify-content-center mb-4"><input class="btn btn-primary text-uppercase" type="submit" value="Сохранить"></div>
+        {% endif %}
+    </form>
+
+{% endblock content %}

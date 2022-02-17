@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+
+{% block title %}
+<h1>{{ post.title }}</h1> 
+{% endblock title %}
+
+{% block content %}
+    <a class="btn btn-primary text-uppercase" href="{% url 'post_list' %}">Список объявлений</a> 
+    <hr>
+    <p><i>{{ post.date|date:'d-M-Y H:i' }}</i></p>
+    <p>{{post.text|safe}}</p>
+    <p>{{post.author}}</p>
+    <b>Категория: {{post.get_category_display}}</b>
+    <p><a href="{% url 'response_add' post.pk %}">Откликнуться</a></p>
+    <hr>
+    Отклики:
+    {% if response %}
+    {% for response in response.all %}
+    <h3>{{response.author}} от {{response.date}}</h3>
+    <p>{{response.text}}</p>
+    <p><a href="{% url 'response_delete' response.pk %}">Удалить</a></p>
+    {% endfor %}
+    {% else %}
+    нет.
+    {% endif %}
+{% endblock content %}

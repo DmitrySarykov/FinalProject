@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{response.post.title}}</title>
+</head>
+<body>
+    <h2>Привет, {{response.author.username}}!</h2>
+    <h3>Автор {{user.username}} статьи <a href="http://{{site.domain}}:8000{% url 'post_detail' response.post.pk %}">{{response.post.title}}</a></h3>
+    <div>{{response.post.text|truncatechars:50}}</div>
+    <div>Принял Ваш отклик: {{response.text|truncatechars:50}}</div>
+</body>
+</html>
