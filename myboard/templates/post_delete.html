@@ -1,19 +1,17 @@
 {% extends 'index.html' %}
 
-{% block title %}
-<h1>Удаление поста</h1>
-{% endblock title %}
- 
 {% block content %}
-    <h1>Вы действительно хотите удалить этот пост?</h1>
+<div class="text-white">
+    <h3>Вы действительно хотите удалить этот пост?</h3>
     <hr>
         <div>
             <h2>{{post.title}}</a></h2>
             <p><i>{{post.date|date:'d M Y'}}</i></p>
-            <h4>{{post.text|truncatechars:50}}</h4>
+            <p>{{post.text|truncatechars:50}}</p>
         </div>
     <form method="POST">
     {% csrf_token %}
-    <div><input type="submit" value="Удалить"></div>
+    <p><input class="btn btn-danger text-uppercase" type="submit" value="Удалить">
     </form>
+</div>
 {% endblock content %}

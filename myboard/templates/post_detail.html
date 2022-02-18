@@ -1,26 +1,34 @@
 {% extends 'index.html' %}
 
-{% block title %}
-<h1>{{ post.title }}</h1> 
-{% endblock title %}
-
 {% block content %}
-    <a href="{% url 'post_list' %}">Список объявлений</a> 
+    <a class="btn btn-warning text-uppercase" href="{% url 'post_list' %}">Список объявлений</a> 
     <hr>
-    <p><i>{{ post.date|date:'d-M-Y H:i' }}</i></p>
-    <p>{{post.text|safe}}</p>
-    <p>{{post.author}}</p>
-    <b>Категория: {{post.get_category_display}}</b>
-    <p><a href="{% url 'response_add' post.pk %}">Откликнуться</a></p>
+    <!-- Post preview-->
+    <div class="post-preview">
+    <i>{{ post.date|date:'d M Y' }}</i> 
+    <h2 class="post-title"><a class="text-white" href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
+    <h4 class="post-subtitle text-white">{{ post.text|safe }}</h4>
+    <p class="post-meta">
+        Автор: {{post.author}}<br>
+        Категория: {{post.get_category_display}}
+    </p>
+    <p class="post-meta">
+        <a class="btn-outline-danger" href="{% url 'post_delete' post.pk %}">Удалить</a>
+        <a class="btn-outline-info" href="{% url 'post_edit' post.pk %}">Изменить</a>
+        <a class="btn-outline-warning" href="{% url 'response_add' post.pk %}">Откликнуться</a>
+    </p>
+    </div>
     <hr>
-    Отклики:
+    <h4 class="text-white-50">Отклики:</h4>
     {% if response %}
     {% for response in response.all %}
-    <h3>{{response.author}} от {{response.date}}</h3>
-    <p>{{response.text}}</p>
-    <p><a href="{% url 'response_delete' response.pk %}">Удалить</a></p>
+    <div class="post-preview">
+        <h4 class="text-white">{{response.author}} от {{response.date}}</h4>
+        <h5 class="text-white">{{response.text}}</h5>
+        <p><a class="btn-outline-danger" href="{% url 'response_delete' response.pk %}">Удалить</a></p>
+    </div>
     {% endfor %}
     {% else %}
-    нет.
+    <p class="text-white">нет откликов</p>
     {% endif %}
 {% endblock content %}

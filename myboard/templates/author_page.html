@@ -1,32 +1,27 @@
 {% extends 'index.html' %}
-
-{% block title %}
-<h1>Моя страница</h1> 
-{% endblock title %}
-
 {% block content %}
     <a class="btn btn-primary text-uppercase" href="{% url 'post_list' %}">Назад</a> 
     <hr>
-    <form method="GET">
-        Объявление:
-        {{filter.form.post}}
-        <input type="submit" value="Найти">
-    </form>
-    Отклики:
+    <div class="text-white">
+        <form method="GET">
+            Отклики по объявлению:
+            {{filter.form.post}}
+            <input class="btn btn-primary text-uppercase" type="submit" value="Найти">
+        </form>
+    </div>
+    <br>
     {% if filter.qs %}
     {% for response in filter.qs %}
-        <h3>{{response.date}} от {{response.author}} на {{response.post}}</h3>
-        <p>{{response.text}}</p>
-        <p>{% if response.status == False %}Не принят{% else %}Принят{% endif %}</p>
-        <p>
-            <a href="{% url 'response_delete' response.pk %}">Удалить</a>
-            <a href="{% url 'response_status' response.pk %}">
-            {% if response.status == False %}Принять{% else %}Отклонить{% endif %}
-            </a>
-        </p>
+    <div class="post-preview">
+        <h4 class="text-white">{{response.date}} от {{response.author}} на {{response.post}}</h4>
+        <h5 class="text-white">{{response.text}}</h5>
+        <p class="post-meta text-white-50">{% if response.status == False %}Не принят{% else %}Принят{% endif %}</p>
+        <p><a class="btn-outline-danger" href="{% url 'response_delete' response.pk %}">Удалить</a> <a class="btn-outline-warning" href="{% url 'response_status' response.pk %}">
+        {% if response.status == False %}Принять{% else %}Отклонить{% endif %}</a></p>
+    </div>
     {% endfor %}
     {% else %}
-    <p>Нет откликов</p>
+    <p class="text-white">нет откликов</p>
     {% endif %}
     {% if is_paginated %}
     

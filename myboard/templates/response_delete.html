@@ -1,11 +1,12 @@
 {% extends 'index.html' %}
 
 {% block title %}
-<h1>Удаление поста</h1>
+Удаление отклика
 {% endblock title %}
  
 {% block content %}
-    <h1>Вы действительно хотите удалить этот отклик?</h1>
+<div class="text-white">
+    <h3>Вы действительно хотите удалить этот отклик?</h3>
     <hr>
         <div>
             <h2>{{response.author}}</a></h2>
@@ -14,6 +15,7 @@
         </div>
     <form method="POST">
     {% csrf_token %}
-    <div class="d-flex justify-content-center mb-4"><input class="btn btn-danger text-uppercase" type="submit" value="Удалить"></div>
+    <p><input class="btn btn-danger text-uppercase" type="submit" value="Удалить">
     </form>
+</div>
 {% endblock content %}

@@ -5,18 +5,14 @@
 {% endblock title %}
  
 {% block content %}
+<div class="text-white">
     <form method="POST">
         {% csrf_token %}
         <p><label>Дата:{{form.date}}</label></p>
         <p><label>Автор:{{form.author}}</label></p>
         <p><label>Объявление:{{form.post}}</label></p>
         <p><label>Текст:{{form.text}}</label></p>
-        <br>
-        {% if request.path == '/response/add/'%}
-            <div class="d-flex justify-content-center mb-4"><input class="btn btn-primary text-uppercase" type="submit" value="Добавить"></div>
-        {% else %}
-            <div class="d-flex justify-content-center mb-4"><input class="btn btn-primary text-uppercase" type="submit" value="Сохранить"></div>
-        {% endif %}
+        <p><input class="btn btn-success text-uppercase" type="submit" value="Добавить"></p>
     </form>
-
+</div>
 {% endblock content %}

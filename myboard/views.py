@@ -15,7 +15,7 @@ from .tasks import send_mail_status
 
 
 # Объявления
-class PostListView(LoginRequiredMixin,ListView):
+class PostListView(ListView):
     model = Post  
     template_name = 'post_list.html' 
     context_object_name = 'post_list'
