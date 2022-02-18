@@ -3,27 +3,27 @@
 <h1>Доска объявлений</h1>
 {% endblock title %}
 {% block content %}
-    <a class="btn btn-primary text-uppercase" href="{% url 'post_add' %}">Создать пост</a> 
+    <a href="{% url 'post_add' %}">Создать пост</a> 
     <hr>
     {% if post_list %}
         {% for post in post_list %}
         <!-- Post preview-->
-        <div class="post-preview">
+        <div>
             <h2 class="post-title"><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
             <div>{{ post.text|safe }}</div>
             <p>Автор: {{post.author}}</p> 
             <a href="{% url 'response_add' post.pk %}">Откликнуться</a>
-            <p class="post-meta">
+            <p>
              Категория: {{post.get_category_display}}
             </p>
-            <p class="post-meta"><i>{{ post.date|date:'d M Y' }}</i> 
+            <p><i>{{ post.date|date:'d M Y' }}</i> 
                 <a href="{% url 'post_edit' post.pk %}">Изменить</a>
                 <a href="{% url 'post_delete' post.pk %}">Удалить</a>
             </p>
         </div>
         
         <!-- Divider-->
-        <hr class="my-4">
+        <hr>
         {% endfor %}
     {% else %}
         <h2> Нет объявлений!</h2>

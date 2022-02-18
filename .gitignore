@@ -3,4 +3,4 @@ __pycache__/
 .vscode
 celerybeat-*
 .DS_Store
-static/
+db.sqlite3

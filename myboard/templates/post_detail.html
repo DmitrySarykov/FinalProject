@@ -5,7 +5,7 @@
 {% endblock title %}
 
 {% block content %}
-    <a class="btn btn-primary text-uppercase" href="{% url 'post_list' %}">Список объявлений</a> 
+    <a href="{% url 'post_list' %}">Список объявлений</a> 
     <hr>
     <p><i>{{ post.date|date:'d-M-Y H:i' }}</i></p>
     <p>{{post.text|safe}}</p>
