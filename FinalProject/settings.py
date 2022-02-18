@@ -130,7 +130,7 @@ ACCOUNT_AUTHENTIFICATION_METHOD = 'email'
 EMAIL_HOST = 'smtp.mail.ru'
 EMAIL_PORT = 465 
 EMAIL_HOST_USER = 'dmasar'
-EMAIL_HOST_PASSWORD = 'QSFS2XQwe5f4JwKPKLpk'
+EMAIL_HOST_PASSWORD = '********' #пароль скрыт 
 EMAIL_USE_SSL = True
 EMAIL_USE_TLS = False
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER + '@mail.ru'
@@ -145,7 +145,7 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
-# ACCOUNT_FORMS = {'signup': 'sign.models.CommonSignupForm'}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
@@ -171,9 +171,6 @@ CKEDITOR_UPLOAD_SLUGIFY_FILENAME = False
 CKEDITOR_RESTRICT_BY_USER = True
 CKEDITOR_BROWSE_SHOW_DIRS = True
 CKEDITOR_RESTRICT_BY_DATE = False
-
-# CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
-# CKEDITOR_UPLOAD_PATH = "uploads/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
